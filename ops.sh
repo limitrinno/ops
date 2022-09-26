@@ -102,7 +102,7 @@ nvmedisknum=`lsblk | grep '^nvme' | wc -l`
 # NVME盘大小
 nvmedisksize=`lsblk | grep "^nvme" | grep -v "$systemdiskname.*" | grep -Eo "[0-9]+.[0-9]+[G|T]" | uniq`
 # 显卡个数
-server_gpu_number=`lspci | grep -i vga | grep -v "Graphics"`
+server_gpu_number=`lspci | grep -i vga | grep -v "Graphics" | wc -l`
 server_gpt_name=`lspci | grep -i vga | grep -v "Graphics" | grep -Eo "GeForce [R|G]TX [0-9]+ [a-Z]+" | uniq`
 if [[ $server_gpu_number -ne 0 && $server_gpt_name == "" ]];then
         echo -e "${greenbg}系统显卡为十六进制，开始进行网络查询，确保网络可用！${plain}"
